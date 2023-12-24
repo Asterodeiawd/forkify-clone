@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --color-accent: #f38e82;
+  --color-search: linear-gradient(to right bottom, #fbdb89, #f48982);
+  --color-background--main: #f9f5f3;
+  --color-background--page: linear-gradient(to right bottom, #fbdb89, #f48982);
+  --color-grey-light-3: #d3c7c3;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  color: #615551;
+  font-weight: 400;
+  background-image: var(--color-background--page);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  max-width: 120rem;
+  margin: 4vw auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 10rem minmax(80rem, auto);
+  grid-template-areas:
+    "header header"
+    "search-results recipe";
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.header {
+  grid-area: header;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-background--main);
+}
+
+.main-logo {
+  height: 4.6rem;
+  margin-left: 4rem;
+}
+
+.search {
+  display: flex;
+  align-items: stretch;
+  padding-left: 3rem;
+  border-radius: 10rem;
+  background-color: #fff;
+  /* overflow: hidden; */
+}
+
+.search__field {
+  width: 30rem;
+  font-size: 1.7rem;
+  font-family: inherit;
+  border: none;
+}
+
+.search__field::placeholder {
+  color: var(--color-grey-light-3);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.search-btn {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #fff;
+  padding: 1.5rem 4rem;
+  background-image: var(--color-search);
+  border-radius: 10rem;
+  border: none;
+}
+
+.search-btn .btn-icon {
+  transform: translateY(0);
+  color: inherit;
+}
+
+.main-nav {
+  align-self: stretch;
+  margin-right: 2.5rem;
+}
+
+.nav__list {
+  height: 100%;
+  display: flex;
+  list-style: none;
+}
+
+.nav__btn {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: inherit;
+  border: none;
+  background-color: inherit;
+  padding-inline: 1.5rem;
+}
+
+.nav__btn:hover {
+  background-color: orangered;
+}
+
+.btn-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  color: var(--color-accent);
+  stroke-width: 2;
+  transform: translateY(-1px);
+  margin-right: 0.6rem;
+}
+
+/* main */
+.search-results {
+  grid-area: search-results;
+  background-color: #fff;
+}
+
+.recipe {
+  grid-area: recipe;
+  background-color: var(--color-background--main);
+}

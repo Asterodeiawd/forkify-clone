@@ -1,8 +1,11 @@
 {
   "name": "forkify-clone",
+  "scripts": {
+    "build": "parcel build index.html",
+    "start": "parcel index.html --port 8081"
+  },
   "version": "1.0.0",
   "description": "a clone version of forkify",
-  "main": "index.html",
   "repository": "git@github.com:Asterodeiawd/forkify-clone.git",
   "author": "asterodiea <d_wang_890227@outlook.com>",
   "license": "MIT",
