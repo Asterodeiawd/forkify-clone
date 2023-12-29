@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/css/style.css" />
     <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon" />
+    <script type="module" src="src/js/controller.js"></script>
     <title>Forkify Clone</title>
   </head>
   <body>
@@ -85,7 +86,32 @@
           </ul>
         </nav>
       </header>
-      <div class="search-results">search-results</div>
+      <div class="search-results">
+        <ul class="result-list">
+          <li class="recipe-brief selected">
+            <a href="#" class="recipe-brief-link">
+              <img
+                src="http://forkify-api.herokuapp.com/images/epicuriousfacebook511b.png"
+                alt="recipe thumb image"
+                class="recipe-brief-image"
+              />
+              <h2 class="recipe-brief-title">sushi rice</h2>
+              <p class="recipe-brief-publisher">epicurious</p>
+            </a>
+          </li>
+          <li class="recipe-brief">
+            <a href="#" class="recipe-brief-link">
+              <img
+                src="http://forkify-api.herokuapp.com/images/epicuriousfacebook511b.png"
+                alt="recipe thumb image"
+                class="recipe-brief-image"
+              />
+              <h2 class="recipe-brief-title">sushi rice</h2>
+              <p class="recipe-brief-publisher">epicurious</p>
+            </a>
+          </li>
+        </ul>
+      </div>
       <div class="recipe">recipe area</div>
     </div>
   </body>
