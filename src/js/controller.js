@@ -1,9 +1,10 @@
+const API_END_POINT = "https://forkify-api.herokuapp.com/api/v2/recipes";
 console.log("es module loaded");
 
 const getAllRecipes = async keyWord => {
   try {
     const resp = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes?search=${keyWord}&key=73fb1d7f-54ab-4ab9-87cb-790d349942a5`
+      `${API_END_POINT}?search=${keyWord}&key=73fb1d7f-54ab-4ab9-87cb-790d349942a5`
     );
 
     const results = await resp.json();
@@ -21,7 +22,7 @@ const addRecipeBrief = ({ id, title, publisher, image_url }) => {
   pos.insertAdjacentHTML(
     "beforeend",
     `
-<li class="recipe-brief" data-id=${id}>
+<li class="recipe-brief" id=${id}>
   <a href="#" class="recipe-brief-link">
     <img
       src=${image_url}
@@ -36,4 +37,16 @@ const addRecipeBrief = ({ id, title, publisher, image_url }) => {
   );
 };
 
-getAllRecipes("rice");
+getAllRecipes("carrot");
+
+const getRecipeById = async id => {
+  try {
+    const resp = await fetch(`${API_END_POINT}/${id}`);
+    const data = await resp.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export { getRecipeById };

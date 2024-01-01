@@ -55,6 +55,7 @@ body {
   .app {
     margin: 0;
     max-width: 100%;
+    border-radius: 0;
   }
 }
 
@@ -86,6 +87,10 @@ body {
   font-size: 1.7rem;
   font-family: inherit;
   border: none;
+}
+
+.search__field:focus {
+  outline: none;
 }
 
 @media (max-width: 50em) {
@@ -147,10 +152,11 @@ body {
   border: none;
   background-color: inherit;
   padding-inline: 1.5rem;
+  transition: background-color 0.3s;
 }
 
 .nav__btn:hover {
-  background-color: orangered;
+  background-color: #f2efee;
 }
 
 .btn-icon {
@@ -204,6 +210,7 @@ body {
 .recipe-brief-image {
   grid-area: image;
   width: 100%;
+  aspect-ratio: 1;
   border-radius: 50%;
 }
 
