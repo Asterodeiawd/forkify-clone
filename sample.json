@@ -1,0 +1,23 @@
+{
+    "recipe": {
+        "publisher": "Real Simple",
+        "ingredients": [
+            {
+                "quantity": 0.75,
+                "unit": "cup",
+                "description": "chopped fresh pineapple"
+            },
+            {
+                "quantity": 0.5,
+                "unit": "cup",
+                "description": "ice"
+            }
+        ],
+        "source_url": "http://www.realsimple.com/food-recipes/browse-all-recipes/carrot-pineapple-smoothie-00000000050727/index.html",
+        "image_url": "http://forkify-api.herokuapp.com/images/carrotsmoothie_30014096fc8.jpg",
+        "title": "Carrot-Pineapple Smoothie",
+        "servings": 4,
+        "cooking_time": 45,
+        "id": "5ed6604591c37cdc054bcb8a"
+    }
+}
