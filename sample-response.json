@@ -1,0 +1,88 @@
+{
+    "recipe": {
+        "publisher": "BBC Good Food",
+        "ingredients": [
+            {
+                "quantity": 300,
+                "unit": "g",
+                "description": "plain flour"
+            },
+            {
+                "quantity": 2,
+                "unit": "tsps",
+                "description": "cinnamon"
+            },
+            {
+                "quantity": 1,
+                "unit": "tsp",
+                "description": "baking powder"
+            },
+            {
+                "quantity": 1,
+                "unit": "tsp",
+                "description": "bicarbonate of soda"
+            },
+            {
+                "quantity": 200,
+                "unit": "g",
+                "description": "soft brown sugar"
+            },
+            {
+                "quantity": 4,
+                "unit": "",
+                "description": "eggs"
+            },
+            {
+                "quantity": 250,
+                "unit": "ml",
+                "description": "oil"
+            },
+            {
+                "quantity": 1,
+                "unit": "",
+                "description": "orange zested"
+            },
+            {
+                "quantity": 1,
+                "unit": "",
+                "description": "lemon zested"
+            },
+            {
+                "quantity": 200,
+                "unit": "g",
+                "description": "carrots finely grated"
+            },
+            {
+                "quantity": 150,
+                "unit": "g",
+                "description": "walnuts chopped"
+            },
+            {
+                "quantity": 227,
+                "unit": "g",
+                "description": "tin pineapple pieces well drained and chopped"
+            },
+            {
+                "quantity": 125,
+                "unit": "g",
+                "description": "unsalted butter at room temperature"
+            },
+            {
+                "quantity": 50,
+                "unit": "g",
+                "description": "icing sugar"
+            },
+            {
+                "quantity": 250,
+                "unit": "g",
+                "description": "cream cheese"
+            }
+        ],
+        "source_url": "http://www.bbcgoodfood.com/recipes/4425/carrot-cake",
+        "image_url": "http://forkify-api.herokuapp.com/images/4425_MEDIUMc880.jpg",
+        "title": "Carrot cake",
+        "servings": 4,
+        "cooking_time": 90,
+        "id": "5ed6604591c37cdc054bca65"
+    }
+}
