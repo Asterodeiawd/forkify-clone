@@ -143,7 +143,7 @@ export default class Recipe {
           <span class="value_field">${this.servings}</span>
           <span class="text_field">servings</span>
           <div class="serving-amount-operations">
-            <button class="btn-text remove-serving-amount">
+            <button type="button" aria-label="remove serving amount" class="btn-text remove-serving-amount">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
