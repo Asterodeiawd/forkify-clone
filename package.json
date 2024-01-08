@@ -10,6 +10,7 @@
   "author": "asterodiea <d_wang_890227@outlook.com>",
   "license": "MIT",
   "devDependencies": {
+    "@parcel/transformer-inline-string": "2.10.3",
     "parcel": "^2.10.3"
   }
 }
