@@ -1,25 +1,33 @@
+import { getRecipeById } from "./api/forkify";
 const AUTHOR = "Real Simple";
 
 export default class Recipe {
-  constructor({
-    id,
-    publisher,
-    ingredients,
-    source_url,
-    image_url,
-    title,
-    servings,
-    cooking_time,
-  }) {
+  constructor(id) {
     this.id = id;
-    this.publisher = publisher;
-    this.ingredients = ingredients;
-    this.source_url = source_url;
-    this.image_url = image_url;
-    this.title = title;
-    this.servings = servings;
-    this.cooking_time = cooking_time;
   }
+
+  getData = async () => {
+    try {
+      const {
+        publisher,
+        ingredients,
+        source_url,
+        image_url,
+        title,
+        servings,
+        cooking_time,
+      } = await getRecipeById(this.id);
+      this.publisher = publisher;
+      this.ingredients = ingredients;
+      this.source_url = source_url;
+      this.image_url = image_url;
+      this.title = title;
+      this.servings = servings;
+      this.cooking_time = cooking_time;
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   render = node => {
     const docFragment = document.createDocumentFragment();
