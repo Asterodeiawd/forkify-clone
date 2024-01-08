@@ -27,20 +27,16 @@ const addRecipeBrief = ({ id, title, publisher, image_url }) => {
 const recipeDetail = document.querySelector(".recipe");
 
 // showRecipeDetail(recipe);
-id = "5ed6604591c37cdc054bcf54";
-(async () => {
-  const recipe = await getRecipeById(id);
-  const recipeView = new Recipe(recipe);
-  recipeView.render(recipeDetail);
-})();
 
 const searchBtn = document.querySelector("#search-btn");
 const search = document.querySelector("#search");
 const spinner1 = document.querySelector("#spinner1");
 const pagination = document.querySelector(".pagination");
-
+const recipeList = document.querySelector(".result-list");
 const paginator = new Paginator(pagination);
+
 searchBtn.addEventListener("click", async e => {
+  recipeList.innerHTML = "";
   spinner1.classList.remove("hidden");
   e.preventDefault();
   const value = search.value;
@@ -55,6 +51,20 @@ searchBtn.addEventListener("click", async e => {
 });
 
 pagination.addEventListener("Paging", e => {
+  recipeList.innerHTML = "";
   const currentPageRecipes = paginator.getPagedRecords();
   currentPageRecipes.forEach(item => addRecipeBrief(item));
+});
+
+recipeList.addEventListener("click", async e => {
+  const item = e.target.closest(".recipe-brief");
+
+  if (!item) return;
+
+  const { id } = item;
+  const recipeData = await getRecipeById(id);
+  const recipe = new Recipe(recipeData);
+
+  recipeDetail.innerHTML = "";
+  recipe.render(recipeDetail);
 });
