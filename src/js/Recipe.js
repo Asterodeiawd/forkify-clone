@@ -1,3 +1,5 @@
+import { Fraction } from "fractional";
+
 import { getRecipeById } from "./api/forkify";
 import rightIcon from "bundle-text:../img/right.svg";
 import clockIcon from "bundle-text:../img/clock.svg";
@@ -81,8 +83,10 @@ export default class Recipe {
           "afterbegin",
           `
             ${rightIcon}
-            <span class="ingredient-quantity">${quantity}</span>&nbsp;
-            <span class="ingredient-unit">${unit}</span>&nbsp;
+            <span class="ingredient-quantity">${
+              quantity ? new Fraction(quantity).toString() + "&nbsp;" : ""
+            }</span>
+            <span class="ingredient-unit">${unit}</span>
             <span class="ingredient-description">${description}</span>
           `
         );

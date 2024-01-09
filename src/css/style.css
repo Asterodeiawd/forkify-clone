@@ -481,6 +481,11 @@ body {
   margin-right: 1rem;
 }
 
+.ingredient-unit,
+.ingredient-description {
+  margin-right: 0.5rem;
+}
+
 .message {
   font-size: 1.6rem;
   text-align: center;
