@@ -23,3 +23,16 @@ export const getRecipeById = async id => {
     console.log(e);
   }
 };
+
+export const addNewRecipe = async article => {
+  try {
+    const resp = await fetch(`${API_END_POINT}?key=${API_KEY}`, {
+      method: "post",
+      data: { ...article },
+    });
+
+    return resp.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
