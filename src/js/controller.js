@@ -35,14 +35,17 @@ pagination.addEventListener("Paging", e => {
   currentPageRecipes.forEach(item => addRecipeBrief(item));
 });
 
-recipeList.on("click", async e => {
-  const item = e.target.closest(".recipe-brief");
+showRecipe = async () => {
+  const id = window.location.hash.slice(1);
 
-  if (!item) return;
+  if (!id) return;
 
-  const { id } = item;
   const recipe = new Recipe(id);
   await recipe.getData();
+
   recipeDetail.innerHTML = "";
   recipe.render(recipeDetail);
-});
+};
+
+window.addEventListener("load", showRecipe);
+window.addEventListener("hashchange", showRecipe);

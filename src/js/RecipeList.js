@@ -7,8 +7,8 @@ export default class RecipeList {
     const html = data
       .map(({ id, title, publisher, image_url }) => {
         return `
-<li class="recipe-brief" id=${id}>
-  <a href="#" class="recipe-brief-link">
+<li class="recipe-brief">
+  <a href="#${id}" class="recipe-brief-link">
     <img
       src=${image_url}
       alt="recipe thumb image"
