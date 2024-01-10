@@ -39,7 +39,7 @@ showRecipe = async () => {
   const id = window.location.hash.slice(1);
 
   if (!id) return;
-
+  recipeView.createSpinner();
   await modal.loadRecipe(id);
   recipeView.render(modal.state.recipe);
 };
