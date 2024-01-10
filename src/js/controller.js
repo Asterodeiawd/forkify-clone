@@ -1,10 +1,10 @@
 "use strict";
-import Recipe from "./Recipe.js";
+import recipeView from "./RecipeView.js";
 import RecipeList from "./RecipeList.js";
 import Paginator from "./Paginator.js";
 import { getAllRecipes } from "./api/forkify.js";
+import * as modal from "./modal.js";
 
-const recipeDetail = document.querySelector(".recipe");
 const searchBtn = document.querySelector("#search-btn");
 const search = document.querySelector("#search");
 const spinner1 = document.querySelector("#spinner1");
@@ -40,11 +40,8 @@ showRecipe = async () => {
 
   if (!id) return;
 
-  const recipe = new Recipe(id);
-  await recipe.getData();
-
-  recipeDetail.innerHTML = "";
-  recipe.render(recipeDetail);
+  await modal.loadRecipe(id);
+  recipeView.render(modal.state.recipe);
 };
 
 window.addEventListener("load", showRecipe);
