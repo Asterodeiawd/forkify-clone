@@ -1,6 +1,6 @@
 "use strict";
 import recipeView from "./RecipeView.js";
-import RecipeList from "./RecipeList.js";
+import recipeListView from "./RecipeList.js";
 import Paginator from "./Paginator.js";
 import { getAllRecipes } from "./api/forkify.js";
 import * as modal from "./modal.js";
@@ -10,11 +10,9 @@ const search = document.querySelector("#search");
 const spinner1 = document.querySelector("#spinner1");
 const pagination = document.querySelector(".pagination");
 const paginator = new Paginator(pagination);
-const recipeListNode = document.querySelector(".result-list");
-const recipeList = new RecipeListView(recipeListNode);
 
 searchBtn.addEventListener("click", async e => {
-  recipeList.innerHTML = "";
+  recipeListView.innerHTML = "";
   spinner1?.classList.remove("hidden");
   e.preventDefault();
   const value = search.value;
@@ -25,12 +23,12 @@ searchBtn.addEventListener("click", async e => {
   paginator.initData(recipes, 10);
   const currentPageRecipes = paginator.getPagedRecords();
   // currentPageRecipes.forEach(item => addRecipeBrief(item));
-  recipeList.render(currentPageRecipes);
+  recipeListView.render(currentPageRecipes);
   spinner1.classList.add("hidden");
 });
 
 pagination.addEventListener("Paging", e => {
-  recipeList.innerHTML = "";
+  recipeListView.innerHTML = "";
   const currentPageRecipes = paginator.getPagedRecords();
   currentPageRecipes.forEach(item => addRecipeBrief(item));
 });

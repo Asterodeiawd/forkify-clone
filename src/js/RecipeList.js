@@ -1,7 +1,5 @@
-export default class RecipeList {
-  constructor(container) {
-    this.container = container;
-  }
+class RecipeListView {
+  #parentElement = document.querySelector(".result-list");
 
   render = data => {
     const html = data
@@ -21,11 +19,13 @@ export default class RecipeList {
     `;
       })
       .join("\n");
-    this.container.innerHTML = "";
-    this.container.insertAdjacentHTML("afterbegin", html);
+    this.#parentElement.innerHTML = "";
+    this.#parentElement.insertAdjacentHTML("afterbegin", html);
   };
 
   on = (event, handler) => {
-    this.container.addEventListener(event, handler);
+    this.#parentElement.addEventListener(event, handler);
   };
 }
+
+export default new RecipeListView();
