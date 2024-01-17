@@ -11,11 +11,11 @@ const spinner1 = document.querySelector("#spinner1");
 const pagination = document.querySelector(".pagination");
 const paginator = new Paginator(pagination);
 const recipeListNode = document.querySelector(".result-list");
-const recipeList = new RecipeList(recipeListNode);
+const recipeList = new RecipeListView(recipeListNode);
 
 searchBtn.addEventListener("click", async e => {
   recipeList.innerHTML = "";
-  spinner1.classList.remove("hidden");
+  spinner1?.classList.remove("hidden");
   e.preventDefault();
   const value = search.value;
   if (!value) return;
@@ -44,5 +44,8 @@ showRecipe = async () => {
   recipeView.render(modal.state.recipe);
 };
 
-window.addEventListener("load", showRecipe);
-window.addEventListener("hashchange", showRecipe);
+const init = () => {
+  recipeView.addHandlerRender(showRecipe);
+};
+
+init();

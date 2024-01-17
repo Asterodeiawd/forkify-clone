@@ -14,6 +14,11 @@ class RecipeView {
   #parentElement = document.querySelector(".recipe");
   #data;
 
+  addHandlerRender = handler =>
+    ["load", "hashchange"].forEach(item =>
+      window.addEventListener(item, handler)
+    );
+
   _clear = () => {
     this.#parentElement.innerHTML = "";
   };
