@@ -1,31 +1,12 @@
 "use strict";
 import recipeView from "./RecipeView.js";
 import recipeListView from "./RecipeList.js";
+import searchView from "./searchView.js";
 import Paginator from "./Paginator.js";
-import { getAllRecipes } from "./api/forkify.js";
 import * as modal from "./modal.js";
 
-const searchBtn = document.querySelector("#search-btn");
-const search = document.querySelector("#search");
-const spinner1 = document.querySelector("#spinner1");
 const pagination = document.querySelector(".pagination");
 const paginator = new Paginator(pagination);
-
-searchBtn.addEventListener("click", async e => {
-  recipeListView.innerHTML = "";
-  spinner1?.classList.remove("hidden");
-  e.preventDefault();
-  const value = search.value;
-  if (!value) return;
-
-  // TODO: if has any child, remove them
-  const recipes = await getAllRecipes(value);
-  paginator.initData(recipes, 10);
-  const currentPageRecipes = paginator.getPagedRecords();
-  // currentPageRecipes.forEach(item => addRecipeBrief(item));
-  recipeListView.render(currentPageRecipes);
-  spinner1.classList.add("hidden");
-});
 
 pagination.addEventListener("Paging", e => {
   recipeListView.innerHTML = "";
@@ -44,10 +25,14 @@ showRecipe = async () => {
 
 const init = () => {
   recipeView.addHandlerRender(showRecipe);
+  searchView.addHandlerSearch(controlSearchResults);
 };
 
-const controlSearchResults = async query => {
+const controlSearchResults = async () => {
   try {
+    const query = searchView.getQueryText();
+    if (!query) return;
+
     await modal.loadSearchResult(query);
     // recipeListView.createSpinner();
     recipeListView.render(modal.state.search.results);
