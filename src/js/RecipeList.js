@@ -3,12 +3,12 @@ class RecipeListView {
 
   render = data => {
     const html = data
-      .map(({ id, title, publisher, image_url }) => {
+      .map(({ id, title, publisher, image }) => {
         return `
 <li class="recipe-brief">
   <a href="#${id}" class="recipe-brief-link">
     <img
-      src=${image_url}
+      src=${image}
       alt="recipe thumb image"
       class="recipe-brief-image"
     />

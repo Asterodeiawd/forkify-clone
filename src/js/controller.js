@@ -46,4 +46,14 @@ const init = () => {
   recipeView.addHandlerRender(showRecipe);
 };
 
+const controlSearchResults = async query => {
+  try {
+    await modal.loadSearchResult(query);
+    // recipeListView.createSpinner();
+    recipeListView.render(modal.state.search.results);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 init();
