@@ -19,8 +19,12 @@ showRecipe = async () => {
 
   if (!id) return;
   recipeView.createSpinner();
-  await modal.loadRecipe(id);
-  recipeView.render(modal.state.recipe);
+  try {
+    await modal.loadRecipe(id);
+    recipeView.render(modal.state.recipe);
+  } catch (e) {
+    recipeView.renderError();
+  }
 };
 
 const init = () => {

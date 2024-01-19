@@ -14,6 +14,7 @@ const AUTHOR = "Real Simple";
 
 class RecipeView extends View {
   _parentElement = document.querySelector(".recipe");
+  _errorMessage = "We can't find specified recipe! Please try something else.";
 
   addHandlerRender = handler =>
     ["load", "hashchange"].forEach(item =>
@@ -168,7 +169,7 @@ class RecipeView extends View {
       "afterbegin",
       `
         <h2 class="heading2">how to cook it</h2>
-        <p class="message">
+        <p class="message margin-top--small">
           This recipe was carefully designed and tested by
           <span class="author-name">${this._data.publisher}</span>. Please check out
           directions at their website.

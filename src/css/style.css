@@ -490,6 +490,9 @@ body {
   font-size: 1.6rem;
   text-align: center;
   color: #918581;
+}
+
+.margin-top--small {
   margin-top: 1rem;
 }
 
@@ -531,4 +534,24 @@ body {
   to {
     transform: rotate(0.5turn);
   }
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-block: 5rem;
+}
+
+.error svg {
+  width: 6rem;
+  color: var(--color-accent);
+  transform: translateY(2px);
+  margin-right: 1rem;
+}
+
+.error .message {
+  font-size: 2.2rem;
+  max-width: 50%;
 }

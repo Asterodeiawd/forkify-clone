@@ -11,7 +11,7 @@ export const loadRecipe = async id => {
   try {
     state.recipe = await getRecipeById(id);
   } catch (e) {
-    console.log(e);
+    throw e;
   }
 };
 
