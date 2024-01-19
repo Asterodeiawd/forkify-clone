@@ -5,10 +5,15 @@ class SearchView {
     return this.#parentElement.querySelector(".search__field").value;
   }
 
+  _clearInput() {
+    this.#parentElement.reset();
+  }
+
   addHandlerSearch(handler) {
     this.#parentElement.addEventListener("submit", e => {
       e.preventDefault();
       handler();
+      this._clearInput();
     });
   }
 }
