@@ -1,36 +1,15 @@
 "use strict";
-import Recipe from "./Recipe.js";
-import RecipeList from "./RecipeList.js";
-import Paginator from "./Paginator.js";
-import { getAllRecipes } from "./api/forkify.js";
+import recipeView from "./views/RecipeView.js";
+import recipeListView from "./views/RecipeListView.js";
+import searchView from "./views/searchView.js";
+import Paginator from "./views/Paginator.js";
+import * as modal from "./modal.js";
 
-const recipeDetail = document.querySelector(".recipe");
-const searchBtn = document.querySelector("#search-btn");
-const search = document.querySelector("#search");
-const spinner1 = document.querySelector("#spinner1");
 const pagination = document.querySelector(".pagination");
 const paginator = new Paginator(pagination);
-const recipeListNode = document.querySelector(".result-list");
-const recipeList = new RecipeList(recipeListNode);
-
-searchBtn.addEventListener("click", async e => {
-  recipeList.innerHTML = "";
-  spinner1.classList.remove("hidden");
-  e.preventDefault();
-  const value = search.value;
-  if (!value) return;
-
-  // TODO: if has any child, remove them
-  const recipes = await getAllRecipes(value);
-  paginator.initData(recipes, 10);
-  const currentPageRecipes = paginator.getPagedRecords();
-  // currentPageRecipes.forEach(item => addRecipeBrief(item));
-  recipeList.render(currentPageRecipes);
-  spinner1.classList.add("hidden");
-});
 
 pagination.addEventListener("Paging", e => {
-  recipeList.innerHTML = "";
+  recipeListView.innerHTML = "";
   const currentPageRecipes = paginator.getPagedRecords();
   currentPageRecipes.forEach(item => addRecipeBrief(item));
 });
@@ -39,13 +18,33 @@ showRecipe = async () => {
   const id = window.location.hash.slice(1);
 
   if (!id) return;
-
-  const recipe = new Recipe(id);
-  await recipe.getData();
-
-  recipeDetail.innerHTML = "";
-  recipe.render(recipeDetail);
+  recipeView.createSpinner();
+  try {
+    await modal.loadRecipe(id);
+    recipeView.render(modal.state.recipe);
+  } catch (e) {
+    recipeView.renderError();
+  }
 };
 
-window.addEventListener("load", showRecipe);
-window.addEventListener("hashchange", showRecipe);
+const init = () => {
+  recipeView.addHandlerRender(showRecipe);
+  searchView.addHandlerSearch(controlSearchResults);
+};
+
+const controlSearchResults = async () => {
+  try {
+    const query = searchView.getQueryText();
+    if (!query) return;
+
+    recipeListView.createSpinner();
+
+    await modal.loadSearchResult(query);
+    // recipeListView.createSpinner();
+    recipeListView.render(modal.state.search.results);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+init();
