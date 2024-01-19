@@ -545,13 +545,13 @@ body {
 }
 
 .error svg {
-  width: 6rem;
+  width: 3rem;
   color: var(--color-accent);
   transform: translateY(2px);
   margin-right: 1rem;
 }
 
 .error .message {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   max-width: 50%;
 }
