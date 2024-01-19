@@ -19,7 +19,10 @@ class View {
   }
 
   render(data) {
-    if (!data) this.renderError();
+    if (!data || (Array.isArray(data) && data.length === 0)) {
+      this.renderError();
+      return;
+    }
 
     this._data = data;
     const markup = this._generateMarkup();

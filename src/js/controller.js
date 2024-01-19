@@ -1,6 +1,6 @@
 "use strict";
 import recipeView from "./views/RecipeView.js";
-import recipeListView from "./views/RecipeList.js";
+import recipeListView from "./views/RecipeListView.js";
 import searchView from "./views/searchView.js";
 import Paginator from "./views/Paginator.js";
 import * as modal from "./modal.js";
@@ -36,6 +36,8 @@ const controlSearchResults = async () => {
   try {
     const query = searchView.getQueryText();
     if (!query) return;
+
+    recipeListView.createSpinner();
 
     await modal.loadSearchResult(query);
     // recipeListView.createSpinner();
