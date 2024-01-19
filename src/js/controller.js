@@ -1,8 +1,8 @@
 "use strict";
-import recipeView from "./RecipeView.js";
-import recipeListView from "./RecipeList.js";
-import searchView from "./searchView.js";
-import Paginator from "./Paginator.js";
+import recipeView from "./views/RecipeView.js";
+import recipeListView from "./views/RecipeList.js";
+import searchView from "./views/searchView.js";
+import Paginator from "./views/Paginator.js";
 import * as modal from "./modal.js";
 
 const pagination = document.querySelector(".pagination");
