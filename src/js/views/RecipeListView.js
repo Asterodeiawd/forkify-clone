@@ -23,10 +23,6 @@ class RecipeListView extends View {
       </li>
     `;
   }
-
-  on = (event, handler) => {
-    this._parentElement.addEventListener(event, handler);
-  };
 }
 
 export default new RecipeListView();
