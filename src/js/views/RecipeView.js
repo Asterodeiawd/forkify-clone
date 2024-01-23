@@ -137,7 +137,7 @@ class RecipeView extends View {
           <span class="text_field">servings</span>
           <div class="serving-amount-operations">
             <button 
-              class="btn-text remove-serving-amount btn-change-amount"
+              class="btn-text btn-change-amount"
               type="button" 
               aria-label="remove serving amount"
               data-change-to="${servings > 1 ? servings - 1 : 1}" 
@@ -145,7 +145,7 @@ class RecipeView extends View {
               ${circleMinusIcon}
             </button>
             <button 
-              class="btn-text add-serving-amount btn-change-amount"
+              class="btn-text btn-change-amount"
               type="button"
               aria-label="add serving amount" 
               data-change-to="${servings + 1}"
