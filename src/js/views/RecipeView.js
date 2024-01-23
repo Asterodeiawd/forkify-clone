@@ -21,6 +21,15 @@ class RecipeView extends View {
       window.addEventListener(item, handler)
     );
 
+  addHandlerClick = handler => {
+    this._parentElement.addEventListener("click", e => {
+      const btn = e.target.closest(".btn-change-amount");
+
+      if (!btn) return;
+      handler(+btn.dataset.changeTo);
+    });
+  };
+
   // overwrite base render function until we remove all DOM create
   // functions to insertAdjacentHTML()!
   render = data => {
@@ -127,10 +136,20 @@ class RecipeView extends View {
           <span class="value_field">${servings}</span>
           <span class="text_field">servings</span>
           <div class="serving-amount-operations">
-            <button type="button" aria-label="remove serving amount" class="btn-text remove-serving-amount">
+            <button 
+              class="btn-text remove-serving-amount btn-change-amount"
+              type="button" 
+              aria-label="remove serving amount"
+              data-change-to="${servings > 1 ? servings - 1 : 1}" 
+            >
               ${circleMinusIcon}
             </button>
-            <button class="btn-text add-serving-amount">
+            <button 
+              class="btn-text add-serving-amount btn-change-amount"
+              type="button"
+              aria-label="add serving amount" 
+              data-change-to="${servings + 1}"
+            >
               ${circlePlusIcon}
             </button>
           </div>
