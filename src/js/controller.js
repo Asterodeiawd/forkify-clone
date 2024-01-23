@@ -2,17 +2,8 @@
 import recipeView from "./views/RecipeView.js";
 import recipeListView from "./views/RecipeListView.js";
 import searchView from "./views/searchView.js";
-import Paginator from "./views/Paginator.js";
+import paginator from "./views/Paginator.js";
 import * as modal from "./modal.js";
-
-const pagination = document.querySelector(".pagination");
-const paginator = new Paginator(pagination);
-
-pagination.addEventListener("Paging", e => {
-  recipeListView.innerHTML = "";
-  const currentPageRecipes = paginator.getPagedRecords();
-  currentPageRecipes.forEach(item => addRecipeBrief(item));
-});
 
 showRecipe = async () => {
   const id = window.location.hash.slice(1);
@@ -30,6 +21,7 @@ showRecipe = async () => {
 const init = () => {
   recipeView.addHandlerRender(showRecipe);
   searchView.addHandlerSearch(controlSearchResults);
+  paginator.addHanderClick(controlPagination);
 };
 
 const controlSearchResults = async () => {
@@ -40,11 +32,27 @@ const controlSearchResults = async () => {
     recipeListView.createSpinner();
 
     await modal.loadSearchResult(query);
-    // recipeListView.createSpinner();
-    recipeListView.render(modal.state.search.results);
+    modal.state.search.currentPage = 0;
+
+    const maxPage = modal.getMaxPageIndex();
+    const pagedResults = modal.getPagedResults(modal.state.search.currentPage);
+
+    paginator.render({
+      current: modal.state.search.currentPage,
+      total: maxPage,
+    });
+
+    recipeListView.render(pagedResults);
   } catch (e) {
     console.log(e);
   }
+};
+
+const controlPagination = index => {
+  modal.state.search.currentPage = index;
+  paginator.render({ current: index, total: modal.getMaxPageIndex() });
+  const pagedResults = modal.getPagedResults(modal.state.search.currentPage);
+  recipeListView.render(pagedResults);
 };
 
 init();
