@@ -58,7 +58,7 @@ const controlPagination = index => {
 
 const controlServings = newServings => {
   modal.changeServings(newServings);
-  recipeView.render(modal.state.recipe);
+  recipeView.update(modal.state.recipe);
 };
 
 init();

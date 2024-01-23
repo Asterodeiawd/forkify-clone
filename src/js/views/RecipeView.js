@@ -40,6 +40,18 @@ class RecipeView extends View {
     this._parentElement.append(docFragment);
   };
 
+  update = data => {
+    this._data = data;
+    const newDocFragment = Array.from(this._build().querySelectorAll("*"));
+    const oldFragment = Array.from(this._parentElement.querySelectorAll("*"));
+
+    const diffs = newDocFragment.filter(
+      (item, index) => !item.isEqualNode(oldFragment[index])
+    );
+
+    console.log(diffs);
+  };
+
   _generateMarkup() {
     // placeholder for later refactor!
     return "<div></div>";
