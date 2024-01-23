@@ -20,6 +20,7 @@ showRecipe = async () => {
 
 const init = () => {
   recipeView.addHandlerRender(showRecipe);
+  recipeView.addHandlerClick(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginator.addHanderClick(controlPagination);
 };
@@ -53,6 +54,11 @@ const controlPagination = index => {
   paginator.render({ current: index, total: modal.getMaxPageIndex() });
   const pagedResults = modal.getPagedResults(modal.state.search.currentPage);
   recipeListView.render(pagedResults);
+};
+
+const controlServings = newServings => {
+  modal.changeServings(newServings);
+  recipeView.render(modal.state.recipe);
 };
 
 init();

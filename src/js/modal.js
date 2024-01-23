@@ -50,3 +50,14 @@ export const getPagedResults = pageIndex => {
 export const getMaxPageIndex = () => {
   return Math.ceil(state.search.results.length / RESULTS_PER_PAGE);
 };
+
+export const changeServings = newServings => {
+  state.recipe.ingredients.forEach(entry => {
+    entry.quantity = (
+      (entry.quantity * newServings) /
+      state.recipe.servings
+    ).toFixed(5);
+  });
+
+  state.recipe.servings = newServings;
+};
