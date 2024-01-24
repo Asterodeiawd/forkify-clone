@@ -5,11 +5,14 @@ import searchView from "./views/searchView.js";
 import paginator from "./views/Paginator.js";
 import * as modal from "./modal.js";
 
-showRecipe = async () => {
+const showRecipe = async () => {
   const id = window.location.hash.slice(1);
 
   if (!id) return;
+
   recipeView.createSpinner();
+  recipeListView.update(modal.getPagedResults(modal.state.search.currentPage));
+
   try {
     await modal.loadRecipe(id);
     recipeView.render(modal.state.recipe);
