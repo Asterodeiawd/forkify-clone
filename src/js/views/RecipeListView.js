@@ -9,8 +9,10 @@ class RecipeListView extends View {
   }
 
   _generateRecipePreview({ id, title, publisher, image }) {
+    const hash = window.location.hash.slice(1);
+
     return `
-      <li class="recipe-brief">
+      <li class="recipe-brief ${hash === id ? "selected" : ""}">
         <a href="#${id}" class="recipe-brief-link">
           <img
             src=${image}

@@ -31,6 +31,34 @@ class View {
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
+  update(data) {
+    this._data = data;
+
+    // this operation will call this._build until we change all code to _generateMarkup()
+    const newDoc =
+      this._build?.() ??
+      document.createRange().createContextualFragment(this._generateMarkup());
+
+    const newNodes = Array.from(newDoc.querySelectorAll("*"));
+    const oldNodes = Array.from(this._parentElement.querySelectorAll("*"));
+
+    oldNodes.forEach((node, index) => {
+      const newNode = newNodes[index];
+
+      if (node.isEqualNode(newNode)) return;
+
+      // update node text
+      if (node.firstChild?.nodeValue?.trim()) {
+        node.textContent = newNode.textContent;
+      }
+
+      // update attributes
+      Array.from(newNode.attributes).forEach(attr =>
+        node.setAttribute(attr.name, attr.value)
+      );
+    });
+  }
+
   renderError(error = this._errorMessage) {
     const markup = `
       <div class='error'>
