@@ -24,6 +24,7 @@ const showRecipe = async () => {
 const init = () => {
   recipeView.addHandlerRender(showRecipe);
   recipeView.addHandlerClick(controlServings);
+  recipeView.addHandlerBookmark(controlBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginator.addHanderClick(controlPagination);
 };
@@ -61,6 +62,14 @@ const controlPagination = index => {
 
 const controlServings = newServings => {
   modal.changeServings(newServings);
+  recipeView.update(modal.state.recipe);
+};
+
+const controlBookmark = recipe => {
+  if (modal.state.bookmarks.some(({ id }) => id === recipe.id)) {
+    modal.deleteBookmark(recipe.id);
+  } else modal.addBookmark(recipe);
+
   recipeView.update(modal.state.recipe);
 };
 

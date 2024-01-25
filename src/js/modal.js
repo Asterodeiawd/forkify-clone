@@ -61,3 +61,18 @@ export const changeServings = newServings => {
 
   state.recipe.servings = newServings;
 };
+
+export const addBookmark = recipe => {
+  state.bookmarks.push(recipe);
+
+  if (recipe.id === state.recipe.id) {
+    state.recipe.bookmarked = true;
+  }
+};
+
+export const deleteBookmark = id => {
+  const index = state.bookmarks.findIndex(({ id: bid }) => bid === id);
+
+  state.bookmarks.splice(index, 1);
+  delete state.recipe.bookmarked;
+};

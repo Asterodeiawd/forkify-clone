@@ -428,7 +428,7 @@ body {
   opacity: 0;
 }
 
-.add-bookmark {
+.btn-bookmark {
   height: 4.5rem;
   width: 4.5rem;
   border-radius: 999px;
@@ -437,10 +437,14 @@ body {
   transition: all 0.3s;
 }
 
-.add-bookmark svg {
+.btn-bookmark svg {
   stroke-width: 2;
   width: 60%;
   height: 60%;
+}
+
+.btn-bookmark.bookmarked svg {
+  fill: white;
 }
 
 .section {

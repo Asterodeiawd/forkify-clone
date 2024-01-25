@@ -30,6 +30,14 @@ class RecipeView extends View {
     });
   };
 
+  addHandlerBookmark = handler => {
+    this._parentElement.addEventListener("click", e => {
+      const btn = e.target.closest(".btn-bookmark");
+
+      if (!btn) return;
+      handler(this._data);
+    });
+  };
   // overwrite base render function until we remove all DOM create
   // functions to insertAdjacentHTML()!
   render = data => {
@@ -171,7 +179,9 @@ class RecipeView extends View {
         }">
           ${userIcon}
         </div>
-        <button class="btn-primary add-bookmark">
+        <button class="btn-primary btn-bookmark ${
+          this._data.bookmarked ? "bookmarked" : ""
+        }">
           ${bookmarkIcon}
         </button>
       `
