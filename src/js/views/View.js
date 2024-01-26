@@ -42,6 +42,8 @@ class View {
     const newNodes = Array.from(newDoc.querySelectorAll("*"));
     const oldNodes = Array.from(this._parentElement.querySelectorAll("*"));
 
+    if (newNodes.length === 0) return;
+
     oldNodes.forEach((node, index) => {
       const newNode = newNodes[index];
 

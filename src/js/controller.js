@@ -3,6 +3,7 @@ import recipeView from "./views/RecipeView.js";
 import recipeListView from "./views/RecipeListView.js";
 import searchView from "./views/searchView.js";
 import paginator from "./views/Paginator.js";
+import bookmarkView from "./views/BookmarkView.js";
 import * as modal from "./modal.js";
 
 const showRecipe = async () => {
@@ -12,6 +13,8 @@ const showRecipe = async () => {
 
   recipeView.createSpinner();
   recipeListView.update(modal.getPagedResults(modal.state.search.currentPage));
+  console.log(modal.state.bookmarks);
+  bookmarkView.update(modal.state.bookmarks);
 
   try {
     await modal.loadRecipe(id);
@@ -27,6 +30,8 @@ const init = () => {
   recipeView.addHandlerBookmark(controlBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginator.addHanderClick(controlPagination);
+  bookmarkView.addHandlerLoad(controlBookmarkList);
+  bookmarkView.render(modal.state.bookmarks);
 };
 
 const controlSearchResults = async () => {
@@ -71,6 +76,10 @@ const controlBookmark = recipe => {
   } else modal.addBookmark(recipe);
 
   recipeView.update(modal.state.recipe);
+
+  bookmarkView.render(modal.state.bookmarks);
 };
+
+const controlBookmarkList = () => bookmarkView.render(modal.state.bookmarks);
 
 init();

@@ -545,17 +545,54 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-block: 5rem;
+  /* margin-block: 5rem; */
+  padding: 5rem 4rem;
+  max-width: 40rem;
+  margin-inline: auto;
 }
 
 .error svg {
-  width: 3rem;
+  width: 5rem;
   color: var(--color-accent);
   transform: translateY(2px);
   margin-right: 1rem;
+  flex-shrink: 0;
 }
 
 .error .message {
   font-size: 1.8rem;
-  max-width: 50%;
+  font-weight: 500;
+  color: inherit;
+  /* max-width: 50%; */
+}
+
+.popup-root {
+  position: relative;
+}
+
+.popup-root:hover .popup-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup-menu {
+  position: absolute;
+  z-index: 100;
+  /* right: 0; */
+  right: -2.5rem;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s 0.2s;
+  box-sizing: 0 0.8rem 5rem rgba(0, 0, 0, 0.2);
+}
+
+.bookmark-list {
+  list-style: none;
+}
+
+.bookmarks-menu {
+  width: 40rem;
+  padding-block: 1rem;
+  background-color: white;
 }
