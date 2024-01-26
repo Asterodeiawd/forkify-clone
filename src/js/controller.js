@@ -13,7 +13,6 @@ const showRecipe = async () => {
 
   recipeView.createSpinner();
   recipeListView.update(modal.getPagedResults(modal.state.search.currentPage));
-  console.log(modal.state.bookmarks);
   bookmarkView.update(modal.state.bookmarks);
 
   try {
@@ -31,7 +30,6 @@ const init = () => {
   searchView.addHandlerSearch(controlSearchResults);
   paginator.addHanderClick(controlPagination);
   bookmarkView.addHandlerLoad(controlBookmarkList);
-  bookmarkView.render(modal.state.bookmarks);
 };
 
 const controlSearchResults = async () => {

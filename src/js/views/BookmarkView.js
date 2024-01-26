@@ -5,13 +5,12 @@ class BookmarkView extends View {
   _errorMessage = "No bookmarks yet. Find a nice recipe and bookmark it ;)";
 
   addHandlerLoad = handler => {
-    window.addEventListener("load", e => {
+    window.addEventListener("load", _ => {
       handler();
     });
   };
 
   _generateMarkup() {
-    console.log(this._data);
     if (Array.isArray(this._data) && this._data.length === 0) return "";
 
     return `
