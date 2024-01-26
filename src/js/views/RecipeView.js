@@ -82,7 +82,7 @@ class RecipeView extends View {
   };
 
   _buildArticleHero = () => {
-    const { image_url, title } = this._data;
+    const { image, title } = this._data;
 
     const figure = document.createElement("figure");
     figure.className = "recipe-detail-header";
@@ -91,7 +91,7 @@ class RecipeView extends View {
       "afterbegin",
       `
         <img
-          src=${image_url}
+          src=${image}
           alt="recipe image"
           class="recipe-detail-image"
         />
@@ -140,14 +140,14 @@ class RecipeView extends View {
 
   _buildServingSection = () => {
     const section = this._getSection("serving");
-    const { cooking_time, servings, publisher } = this._data;
+    const { cookingTime, servings, publisher } = this._data;
 
     section.insertAdjacentHTML(
       "afterbegin",
       `
         <div class="serving-field">
           ${clockIcon}
-          <span class="value_field">${cooking_time}</span>
+          <span class="value_field">${cookingTime}</span>
           <span class="text_field">minutes</span>
         </div>
 

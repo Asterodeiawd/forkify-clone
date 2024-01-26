@@ -21,14 +21,14 @@ class BookmarkView extends View {
     `;
   }
 
-  _generateRecipePreview({ id, title, publisher, image_url }) {
+  _generateRecipePreview({ id, title, publisher, image }) {
     const hash = window.location.hash.slice(1);
 
     return `
     <li class="recipe-brief ${hash === id ? "selected" : ""}">
       <a href="#${id}" class="recipe-brief-link">
         <img
-          src=${image_url}
+          src=${image}
           alt="recipe thumb image"
           class="recipe-brief-image"
         />
