@@ -22,6 +22,9 @@ export const loadRecipe = async id => {
     delete state.recipe.cooking_time;
     delete state.recipe.image_url;
     delete state.recipe.source_url;
+
+    if (state.bookmarks.some(item => item.id === id))
+      state.recipe.bookmarked = true;
   } catch (e) {
     throw e;
   }
