@@ -18,7 +18,7 @@ class View {
     this._parentElement.insertAdjacentHTML("afterbegin", spinnerMarkup);
   }
 
-  render(data) {
+  render(data, attach = true) {
     if (!data || (Array.isArray(data) && data.length === 0)) {
       this.renderError();
       return;
@@ -26,6 +26,8 @@ class View {
 
     this._data = data;
     const markup = this._generateMarkup();
+
+    if (!attach) return this._generateMarkup();
 
     this._clear();
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
