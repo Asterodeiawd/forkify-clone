@@ -10,7 +10,21 @@ export const state = {
 
 export const loadRecipe = async id => {
   try {
-    state.recipe = await getRecipeById(id);
+    const recipe = await getRecipeById(id);
+
+    state.recipe = {
+      ...recipe,
+      image: recipe.image_url,
+      cookingTime: recipe.cooking_time,
+      source: recipe.source_url,
+    };
+
+    delete state.recipe.cooking_time;
+    delete state.recipe.image_url;
+    delete state.recipe.source_url;
+
+    if (state.bookmarks.some(item => item.id === id))
+      state.recipe.bookmarked = true;
   } catch (e) {
     throw e;
   }
