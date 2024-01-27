@@ -11,13 +11,13 @@ class BookmarkView extends View {
   };
 
   _generateMarkup() {
-    if (Array.isArray(this._data) && this._data.length === 0) return "";
-
-    return `
-      <ul class="bookmark-list">
-        ${this._data.map(this._generateRecipePreview).join("\n")}
-      </ul>
-    `;
+    return Array.isArray(this._data) && this._data.length === 0
+      ? ""
+      : `
+        <ul class="bookmark-list">
+          ${this._data.map(this._generateRecipePreview).join("\n")}
+        </ul>
+      `;
   }
 
   _generateRecipePreview({ id, title, publisher, image }) {

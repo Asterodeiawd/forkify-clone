@@ -183,8 +183,11 @@ body {
 
 .result-list {
   padding-top: 3rem;
-  list-style: none;
   width: 100%;
+}
+
+.result-list ul {
+  list-style: none;
 }
 
 .recipe-brief {

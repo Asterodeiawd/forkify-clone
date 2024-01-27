@@ -5,7 +5,13 @@ class RecipeListView extends View {
   _errorMessage = "Didn't find anything";
 
   _generateMarkup() {
-    return this._data.map(this._generateRecipePreview).join("\n");
+    return Array.isArray(this._data) && this._data.length === 0
+      ? ""
+      : `
+        <ul>
+          ${this._data.map(this._generateRecipePreview).join("\n")}
+        </ul>
+        `;
   }
 
   _generateRecipePreview({ id, title, publisher, image }) {
