@@ -82,11 +82,29 @@ export const addBookmark = recipe => {
   if (recipe.id === state.recipe.id) {
     state.recipe.bookmarked = true;
   }
+
+  serializeBookmarks();
 };
 
 export const deleteBookmark = id => {
   const index = state.bookmarks.findIndex(({ id: bid }) => bid === id);
 
   state.bookmarks.splice(index, 1);
-  delete state.recipe.bookmarked;
+
+  if (id === state.recipe.id) delete state.recipe.bookmarked;
+
+  serializeBookmarks();
 };
+
+function serializeBookmarks() {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+}
+
+function init() {
+  const data = localStorage.getItem("bookmarks");
+
+  const bookmarks = JSON.parse(data ?? "[]");
+  state.bookmarks = bookmarks;
+}
+
+init();
