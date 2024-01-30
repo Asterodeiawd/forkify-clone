@@ -84,3 +84,5 @@ const controlBookmark = recipe => {
 const controlBookmarkList = () => bookmarkView.render(modal.state.bookmarks);
 
 init();
+
+document.querySelector(".add-recipe-dialog").showModal();

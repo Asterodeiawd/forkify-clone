@@ -608,3 +608,103 @@ body {
   padding-block: 1rem;
   background-color: white;
 }
+
+.add-recipe-dialog {
+  position: absolute;
+  width: 100rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5rem 6rem;
+  border: none;
+  border-radius: 1rem;
+  box-sizing: 0 0 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+.add-recipe-dialog::backdrop {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.relative {
+  position: relative;
+}
+
+.add-recipe-dialog form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 1.5rem;
+  gap: 4rem 6rem;
+}
+
+.upload--field-value {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.upload--field-value:focus {
+  border: 1px solid #f38e82;
+  outline: none;
+  background-color: #f9f5f3;
+}
+
+.upload-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.upload--field {
+  display: flex;
+  align-items: center;
+}
+
+.upload--field-name {
+  flex: 0 0 12rem;
+}
+
+.btn-upload {
+  width: max-content;
+  grid-column: 1 / -1;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 4rem;
+  border-radius: 999px;
+  justify-self: center;
+}
+
+.btn-upload svg {
+  width: 2.4rem;
+}
+
+.form-heading3 {
+  text-transform: uppercase;
+  font-size: 2.25rem;
+  color: #615551;
+  margin-bottom: 1rem;
+}
+
+.close-dialog {
+  width: 3rem;
+  height: 3rem;
+  background-color: #fff;
+  border: none;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+}
+
+.close-dialog svg {
+  color: #615551;
+  stroke-width: 2.5;
+}

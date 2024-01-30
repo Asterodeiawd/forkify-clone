@@ -44,7 +44,7 @@
         </form>
         <nav class="main-nav">
           <ul class="nav__list">
-            <li class="nav__item">
+            <li class="nav__item relative">
               <button class="nav__btn nav__btn--add-recipe">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +63,155 @@
 
                 add recipe
               </button>
+              <dialog class="add-recipe-dialog">
+                <form>
+                  <div class="upload-column">
+                    <h3 class="form-heading3">Recipe Data</h3>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Title</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="title"
+                        id="title"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">URL</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="url"
+                        id="url"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Image URL</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="image_url"
+                        id="image_url"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Publisher</span>
+                      <input
+                        class="upload--field-value"
+                        type="number"
+                        name="publisher"
+                        id="publisher"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Prep time</span>
+                      <input
+                        class="upload--field-value"
+                        type="number"
+                        name="prep_time"
+                        id="prep_time"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Servings</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="servings"
+                        id="servings"
+                      />
+                    </label>
+                  </div>
+                  <div class="upload-column">
+                    <h3 class="form-heading3">Ingredients</h3>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Ingredient 1</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="ingredient-1"
+                        placeholder="Format: 'Quantity,Unit,Description'"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Ingredient 2</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="ingredient-2"
+                        placeholder="Format: 'Quantity,Unit,Description'"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Ingredient 3</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="ingredient-3"
+                        placeholder="Format: 'Quantity,Unit,Description'"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Ingredient 4</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="ingredient-4"
+                        placeholder="Format: 'Quantity,Unit,Description'"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Ingredient 5</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="ingredient-5"
+                        placeholder="Format: 'Quantity,Unit,Description'"
+                      />
+                    </label>
+                    <label class="upload--field">
+                      <span class="upload--field-name">Ingredient 6</span>
+                      <input
+                        class="upload--field-value"
+                        type="text"
+                        name="ingredient-6"
+                        placeholder="Format: 'Quantity,Unit,Description'"
+                      />
+                    </label>
+                  </div>
+                  <button type="submit" class="btn-primary btn-upload">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"
+                      />
+                    </svg>
+                    upload
+                  </button>
+                </form>
+                <button type="button" class="close-dialog" id="close-dialog">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18 18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </dialog>
             </li>
             <li class="nav__item popup-root">
               <button class="nav__btn nav__btn--bookmarks">
