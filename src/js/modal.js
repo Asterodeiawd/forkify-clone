@@ -8,20 +8,25 @@ export const state = {
   bookmarks: [],
 };
 
+function createRecipeObject(data) {
+  const recipe = {
+    ...data,
+    image: data.image_url,
+    cookingTime: data.cooking_time,
+    source: data.source_url,
+  };
+
+  delete recipe.cooking_time;
+  delete recipe.image_url;
+  delete recipe.source_url;
+
+  return recipe;
+}
+
 export const loadRecipe = async id => {
   try {
     const recipe = await getRecipeById(id);
-
-    state.recipe = {
-      ...recipe,
-      image: recipe.image_url,
-      cookingTime: recipe.cooking_time,
-      source: recipe.source_url,
-    };
-
-    delete state.recipe.cooking_time;
-    delete state.recipe.image_url;
-    delete state.recipe.source_url;
+    state.recipe = createRecipeObject(recipe);
 
     if (state.bookmarks.some(item => item.id === id))
       state.recipe.bookmarked = true;
@@ -97,14 +102,20 @@ export const deleteBookmark = id => {
 };
 
 function serializeBookmarks() {
-  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+  const ids = state.bookmarks.map(bookmark => bookmark.id);
+  localStorage.setItem("bookmarks", JSON.stringify(ids));
 }
 
-function init() {
+export async function loadBookmarks() {
   const data = localStorage.getItem("bookmarks");
 
-  const bookmarks = JSON.parse(data ?? "[]");
-  state.bookmarks = bookmarks;
-}
+  const bookmarkIds = JSON.parse(data ?? "[]");
+  const bookmarks = await Promise.allSettled(
+    bookmarkIds.map(async id => {
+      const data = await getRecipeById(id);
+      return createRecipeObject(data);
+    })
+  );
 
-init();
+  state.bookmarks = bookmarks.map(item => item.value);
+}
