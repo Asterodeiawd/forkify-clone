@@ -23,13 +23,16 @@ const showRecipe = async () => {
   }
 };
 
-const init = () => {
+const init = async () => {
   recipeView.addHandlerRender(showRecipe);
   recipeView.addHandlerClick(controlServings);
   recipeView.addHandlerBookmark(controlBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginator.addHanderClick(controlPagination);
   bookmarkView.addHandlerLoad(controlBookmarkList);
+
+  await modal.loadBookmarks();
+  controlBookmarkList();
 };
 
 const controlSearchResults = async () => {
