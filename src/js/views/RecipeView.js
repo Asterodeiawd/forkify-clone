@@ -203,9 +203,12 @@ class RecipeView extends View {
           <span class="author-name">${this._data.publisher}</span>. Please check out
           directions at their website.
         </p>
-        <button class="btn-primary show-directions">
-          directions &nbsp;&rarr;
-        </button>
+
+        <div class="btn-primary show-directions">
+          <a href=${this._data.source}>
+            directions &nbsp;&rarr;
+          </a>
+        </div>
     `
     );
 

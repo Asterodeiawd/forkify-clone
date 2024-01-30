@@ -516,6 +516,15 @@ body {
   border-radius: 999px;
   margin-inline: auto;
   margin-block: 4rem;
+  width: max-content;
+}
+
+.show-directions a:link,
+.show-directions a:visited {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .spinner {
