@@ -4,6 +4,7 @@ import recipeListView from "./views/RecipeListView.js";
 import searchView from "./views/searchView.js";
 import paginator from "./views/Paginator.js";
 import bookmarkView from "./views/BookmarkView.js";
+import addRecipeView from "./views/AddRecipeView.js";
 import * as modal from "./modal.js";
 
 const showRecipe = async () => {
@@ -30,6 +31,7 @@ const init = async () => {
   searchView.addHandlerSearch(controlSearchResults);
   paginator.addHanderClick(controlPagination);
   bookmarkView.addHandlerLoad(controlBookmarkList);
+  addRecipeView.addHandlerSubmit(controlAddRecipe);
 
   await modal.loadBookmarks();
   controlBookmarkList();
@@ -83,6 +85,8 @@ const controlBookmark = recipe => {
 
 const controlBookmarkList = () => bookmarkView.render(modal.state.bookmarks);
 
-init();
+const controlAddRecipe = data => {
+  console.log(data);
+};
 
-document.querySelector(".add-recipe-dialog").showModal();
+init();
