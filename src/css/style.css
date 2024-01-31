@@ -609,6 +609,17 @@ body {
   background-color: white;
 }
 
+dialog:not([open]) {
+  opacity: 0;
+  visibility: hidden;
+  display: block;
+}
+
+dialog {
+  opacity: 1;
+  transition: opacity 0.6s ease-in;
+}
+
 .add-recipe-dialog {
   position: absolute;
   width: 100rem;
@@ -707,4 +718,32 @@ body {
 .close-dialog svg {
   color: #615551;
   stroke-width: 2.5;
+}
+
+.dialog-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* padding: 4rem 0; */
+  padding: 1.5rem 0;
+  margin: 3rem auto 0;
+  background-color: #fff6f6;
+  box-shadow: 0 0 0 1px #e0b4b4 inset, 0 0 0 0 transparent;
+  border-radius: 0.28571429rem;
+}
+
+.dialog-error svg {
+  width: 4rem;
+  color: var(--color-accent);
+  transform: translateY(2px);
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.dialog-error .message {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #9f3a38;
+  /* max-width: 50%; */
 }

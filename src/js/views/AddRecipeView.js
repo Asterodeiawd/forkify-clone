@@ -1,4 +1,5 @@
 import View from "./View.js";
+import errorIcon from "bundle-text:../../img/exclamation-triangle.svg";
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector(".add-recipe-dialog");
@@ -25,6 +26,22 @@ class AddRecipeView extends View {
       const data = [...formData.entries()];
       handler(data);
     });
+  }
+
+  renderError(message = this._errorMessage) {
+    const markup = `
+      <div class='dialog-error'>
+        ${errorIcon}
+        <p class="message">${message}</p>
+      </div>
+    `;
+
+    this._parentElement.insertAdjacentHTML("beforeend", markup);
+  }
+
+  clearError() {
+    const errorBlocks = this._parentElement.querySelectorAll(".dialog-error");
+    errorBlocks.forEach(err => err.remove());
   }
 }
 

@@ -87,6 +87,8 @@ const controlBookmarkList = () => bookmarkView.render(modal.state.bookmarks);
 
 const controlAddRecipe = data => {
   console.log(data);
+  addRecipeView.renderError("upload failed!");
+  addRecipeView.clearError();
 };
 
 init();
