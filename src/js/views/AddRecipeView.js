@@ -23,7 +23,7 @@ class AddRecipeView extends View {
     this._parentElement.addEventListener("submit", e => {
       e.preventDefault();
       const formData = new FormData(this._parentElement.firstElementChild);
-      const data = [...formData.entries()];
+      const data = Object.fromEntries(formData);
       handler(data);
     });
   }
@@ -36,6 +36,7 @@ class AddRecipeView extends View {
       </div>
     `;
 
+    this.clearError();
     this._parentElement.insertAdjacentHTML("beforeend", markup);
   }
 

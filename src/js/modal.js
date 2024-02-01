@@ -1,5 +1,5 @@
 "use strict";
-import { getAllRecipes, getRecipeById } from "./api/forkify";
+import { getAllRecipes, getRecipeById, addNewRecipe } from "./api/forkify";
 import { RESULTS_PER_PAGE } from "./config";
 
 export const state = {
@@ -49,6 +49,12 @@ export const loadSearchResult = async query => {
     console.log(e);
     throw e;
   }
+};
+
+export const addRecipe = async recipeData => {
+  const recipe = await addNewRecipe(recipeData);
+  state.recipe = createRecipeObject(recipe);
+  addBookmark(recipe);
 };
 
 export const getPagedResults = pageIndex => {

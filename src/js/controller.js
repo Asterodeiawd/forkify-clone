@@ -85,10 +85,42 @@ const controlBookmark = recipe => {
 
 const controlBookmarkList = () => bookmarkView.render(modal.state.bookmarks);
 
-const controlAddRecipe = data => {
-  console.log(data);
-  addRecipeView.renderError("upload failed!");
+const controlAddRecipe = async data => {
   addRecipeView.clearError();
+
+  try {
+    const ingredientsText = Object.entries(data)
+      .filter(([key, value]) => key.startsWith("ingredient") && value.trim())
+      .map(([_, value]) => value.split(","));
+
+    if (ingredientsText.some(entry => entry.length < 3))
+      throw new Error(
+        "ingredients must start with a number(or empty) and have three fields!"
+      );
+
+    const ingredients = ingredientsText.map(
+      ([quantity, unit, description]) => ({
+        quantity: quantity ? +quantity : null,
+        unit,
+        description,
+      })
+    );
+
+    const recipe = {
+      ingredients,
+      title: data.title,
+      servings: +data.servings,
+      cooking_time: +data.prep_time,
+      image_url: data.image_url,
+      source_url: data.url,
+      publisher: data.publisher,
+    };
+
+    const resp = await modal.addRecipe(recipe);
+    console.log(resp);
+  } catch (e) {
+    addRecipeView.renderError(e);
+  }
 };
 
 init();
