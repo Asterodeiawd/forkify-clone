@@ -1,6 +1,6 @@
 import { API_END_POINT } from "../config";
 import { API_KEY } from "../config";
-import { getJSON } from "../helper";
+import { getJSON, sendJSON } from "../helper";
 
 export const getAllRecipes = async keyWord => {
   const result = await getJSON(
@@ -14,11 +14,8 @@ export const getRecipeById = async id => {
   return resp.data.recipe;
 };
 
-export const addNewRecipe = async article => {
-  const resp = await getJSON(`${API_END_POINT}?key=${API_KEY}`, {
-    method: "post",
-    data: { ...article },
-  });
-
-  return resp;
+export const addNewRecipe = async recipe => {
+  const resp = await sendJSON(`${API_END_POINT}?key=${API_KEY}`, recipe);
+  if (resp.status !== "success") throw new Error(resp.message);
+  return resp.data.recipe;
 };

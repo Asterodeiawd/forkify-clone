@@ -1,5 +1,5 @@
 "use strict";
-import { getAllRecipes, getRecipeById } from "./api/forkify";
+import { getAllRecipes, getRecipeById, addNewRecipe } from "./api/forkify";
 import { RESULTS_PER_PAGE } from "./config";
 
 export const state = {
@@ -8,9 +8,28 @@ export const state = {
   bookmarks: [],
 };
 
+function createRecipeObject(data) {
+  const recipe = {
+    ...data,
+    image: data.image_url,
+    cookingTime: data.cooking_time,
+    source: data.source_url,
+  };
+
+  delete recipe.cooking_time;
+  delete recipe.image_url;
+  delete recipe.source_url;
+
+  return recipe;
+}
+
 export const loadRecipe = async id => {
   try {
-    state.recipe = await getRecipeById(id);
+    const recipe = await getRecipeById(id);
+    state.recipe = createRecipeObject(recipe);
+
+    if (state.bookmarks.some(item => item.id === id))
+      state.recipe.bookmarked = true;
   } catch (e) {
     throw e;
   }
@@ -30,6 +49,12 @@ export const loadSearchResult = async query => {
     console.log(e);
     throw e;
   }
+};
+
+export const addRecipe = async recipeData => {
+  const recipe = await addNewRecipe(recipeData);
+  state.recipe = createRecipeObject(recipe);
+  addBookmark(recipe);
 };
 
 export const getPagedResults = pageIndex => {
@@ -61,3 +86,42 @@ export const changeServings = newServings => {
 
   state.recipe.servings = newServings;
 };
+
+export const addBookmark = recipe => {
+  state.bookmarks.push(recipe);
+
+  if (recipe.id === state.recipe.id) {
+    state.recipe.bookmarked = true;
+  }
+
+  serializeBookmarks();
+};
+
+export const deleteBookmark = id => {
+  const index = state.bookmarks.findIndex(({ id: bid }) => bid === id);
+
+  state.bookmarks.splice(index, 1);
+
+  if (id === state.recipe.id) delete state.recipe.bookmarked;
+
+  serializeBookmarks();
+};
+
+function serializeBookmarks() {
+  const ids = state.bookmarks.map(bookmark => bookmark.id);
+  localStorage.setItem("bookmarks", JSON.stringify(ids));
+}
+
+export async function loadBookmarks() {
+  const data = localStorage.getItem("bookmarks");
+
+  const bookmarkIds = JSON.parse(data ?? "[]");
+  const bookmarks = await Promise.allSettled(
+    bookmarkIds.map(async id => {
+      const data = await getRecipeById(id);
+      return createRecipeObject(data);
+    })
+  );
+
+  state.bookmarks = bookmarks.map(item => item.value);
+}

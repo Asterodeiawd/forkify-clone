@@ -30,6 +30,14 @@ class RecipeView extends View {
     });
   };
 
+  addHandlerBookmark = handler => {
+    this._parentElement.addEventListener("click", e => {
+      const btn = e.target.closest(".btn-bookmark");
+
+      if (!btn) return;
+      handler(this._data);
+    });
+  };
   // overwrite base render function until we remove all DOM create
   // functions to insertAdjacentHTML()!
   render = data => {
@@ -39,18 +47,6 @@ class RecipeView extends View {
     const docFragment = this._build();
     this._parentElement.append(docFragment);
   };
-
-  // update = data => {
-  //   this._data = data;
-  //   const newDocFragment = Array.from(this._build().querySelectorAll("*"));
-  //   const oldFragment = Array.from(this._parentElement.querySelectorAll("*"));
-
-  //   const diffs = newDocFragment.filter(
-  //     (item, index) => !item.isEqualNode(oldFragment[index])
-  //   );
-
-  //   console.log(diffs);
-  // };
 
   _generateMarkup() {
     // placeholder for later refactor!
@@ -74,7 +70,7 @@ class RecipeView extends View {
   };
 
   _buildArticleHero = () => {
-    const { image_url, title } = this._data;
+    const { image, title } = this._data;
 
     const figure = document.createElement("figure");
     figure.className = "recipe-detail-header";
@@ -83,7 +79,7 @@ class RecipeView extends View {
       "afterbegin",
       `
         <img
-          src=${image_url}
+          src=${image}
           alt="recipe image"
           class="recipe-detail-image"
         />
@@ -132,14 +128,14 @@ class RecipeView extends View {
 
   _buildServingSection = () => {
     const section = this._getSection("serving");
-    const { cooking_time, servings, publisher } = this._data;
+    const { cookingTime, servings, publisher } = this._data;
 
     section.insertAdjacentHTML(
       "afterbegin",
       `
         <div class="serving-field">
           ${clockIcon}
-          <span class="value_field">${cooking_time}</span>
+          <span class="value_field">${cookingTime}</span>
           <span class="text_field">minutes</span>
         </div>
 
@@ -171,7 +167,9 @@ class RecipeView extends View {
         }">
           ${userIcon}
         </div>
-        <button class="btn-primary add-bookmark">
+        <button class="btn-primary btn-bookmark ${
+          this._data.bookmarked ? "bookmarked" : ""
+        }">
           ${bookmarkIcon}
         </button>
       `
@@ -205,9 +203,12 @@ class RecipeView extends View {
           <span class="author-name">${this._data.publisher}</span>. Please check out
           directions at their website.
         </p>
-        <button class="btn-primary show-directions">
-          directions &nbsp;&rarr;
-        </button>
+
+        <div class="btn-primary show-directions">
+          <a href=${this._data.source}>
+            directions &nbsp;&rarr;
+          </a>
+        </div>
     `
     );
 

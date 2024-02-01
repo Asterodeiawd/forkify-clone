@@ -22,3 +22,27 @@ export const getJSON = async (url, options) => {
     throw e;
   }
 };
+
+export const sendJSON = async (url, data) => {
+  try {
+    const prms = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(data),
+    });
+
+    const resp = await Promise.race([prms, timeout(TIMEOUT_THRESHOLD)]);
+
+    return await resp.json();
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const asleep = async ms =>
+  new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
