@@ -15,8 +15,12 @@ class AddRecipeView extends View {
     });
 
     this._closeButton.addEventListener("click", _ => {
-      this._parentElement.close();
+      this.close();
     });
+  }
+
+  close() {
+    this._parentElement.close();
   }
 
   addHandlerSubmit(handler) {

@@ -6,6 +6,7 @@ import paginator from "./views/Paginator.js";
 import bookmarkView from "./views/BookmarkView.js";
 import addRecipeView from "./views/AddRecipeView.js";
 import * as modal from "./modal.js";
+import { asleep } from "./helper.js";
 
 const showRecipe = async () => {
   const id = window.location.hash.slice(1);
@@ -116,8 +117,14 @@ const controlAddRecipe = async data => {
       publisher: data.publisher,
     };
 
-    const resp = await modal.addRecipe(recipe);
-    console.log(resp);
+    await modal.addRecipe(recipe);
+    recipeView.render(modal.state.recipe);
+
+    history.pushState(null, null, `#${modal.state.recipe.id}`);
+    bookmarkView.render(modal.state.bookmarks);
+
+    // await asleep(1000);
+    addRecipeView.close();
   } catch (e) {
     addRecipeView.renderError(e);
   }

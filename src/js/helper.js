@@ -41,3 +41,8 @@ export const sendJSON = async (url, data) => {
     throw e;
   }
 };
+
+export const asleep = async ms =>
+  new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
